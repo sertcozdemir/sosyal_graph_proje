@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene
 from PyQt5.QtGui import QBrush, QPen
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, pyqtSignal
 from math import cos, sin, pi
 from PyQt5.QtGui import QBrush, QPen, QPainter
 
@@ -8,6 +8,7 @@ from core.graph import Graph
 
 
 class GraphView(QGraphicsView):
+    node_clicked = pyqtSignal(int)   
     def __init__(self, graph: Graph, parent=None):
         super().__init__(parent)
         self.graph = graph
@@ -60,8 +61,20 @@ class GraphView(QGraphicsView):
                 2 * node_radius, 2 * node_radius,
                 pen_node, brush_node
             )
+            ellipse.setData(0,node_id)
+            ellipse.setFlag(ellipse.ItemIsSelectable, True)
             # Node id yazısı
-            self.scene.addText(str(node_id)).setPos(x + 10, y + 10)
+            text_item= self.scene.addText(str(node_id))
+            text_item.setPos(x+10, y+10)
+            text_item.setData(0, node_id)
+    def mousePressEvent(self, event):
+        item=self.itemAt(event.pos())
+        if item is not None:
+            node_id=item.data(0)
+            if node_id is not None:
+                self.node_clicked.emit(int(node_id))
+                return
+        super().mousePressEvent(event)
     def set_node_colors(self, color_map: dict[int, int]):
         """Welsh–Powell çıktısı buraya verilir."""
         self.node_colors = color_map or {}

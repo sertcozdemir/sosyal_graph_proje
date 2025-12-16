@@ -22,7 +22,7 @@ class MainWindow(QMainWindow):
         main_layout = QHBoxLayout(central)
 
         # SOL kısım = graf canvas
-        self.graph_view = GraphView(self.graph)
+        self.graph_view.node_clicked.connect(self.on_node_clicked) = GraphView(self.graph)
         main_layout.addWidget(self.graph_view, stretch=3)
 
         # SAĞ kısım = kontrol paneli

@@ -12,3 +12,4 @@ class Node:
     def __repr__(self) -> str:
         return (f"Node(id={self.id}, aktiflik={self.aktiflik}, "
                 f"etkilesim={self.etkilesim}, baglanti_sayisi={self.baglanti_sayisi})")
+    

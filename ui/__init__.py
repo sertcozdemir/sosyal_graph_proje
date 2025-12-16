@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene
 from PyQt5.QtGui import QBrush, QPen, QPainter
 from PyQt5.QtCore import Qt
+from core.graph import Graph
 
 class GraphView(QGraphicsView):
     def __init__(self, graph: Graph, parent=None):

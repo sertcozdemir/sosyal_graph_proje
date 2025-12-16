@@ -28,27 +28,27 @@ class Graph:
         ]
         del self.nodes[node_id]
 
-    def add_undirected_edge(self, node_id_a: int, node_id_b: int) -> None:
-        if node_id_a not in self.nodes or node_id_b not in self.nodes:
-            raise ValueError("Edge eklerken node yok.")
-        if node_id_a == node_id_b:
-            raise ValueError("Self-loop yasak.")
+    def add_undirected_edge(self, a: int, b: int):
+        if a == b:
+            raise ValueError("Self-loop yasak")
 
-        node_a = self.nodes[node_id_a]
-        node_b = self.nodes[node_id_b]
+        if a not in self.nodes or b not in self.nodes:
+            raise ValueError("Node yok")
 
-        weight = self.compute_weight(node_a, node_b)
+    # zaten varsa ekleme
+        if b in self.nodes[a].neighbors:
+            raise ValueError("Bu edge zaten var")
 
-        # İki yönlü edge
-        self.edges.append(Edge(node_id_a, node_id_b, weight))
-        self.edges.append(Edge(node_id_b, node_id_a, weight))
+        w = self.compute_weight(self.nodes[a], self.nodes[b])
 
-        node_a.neighbors.add(node_id_b)
-        node_b.neighbors.add(node_id_a)
+        self.edges.append(Edge(a, b, w))
 
-        # Bağlantı sayısı güncelle
-        node_a.baglanti_sayisi = len(node_a.neighbors)
-        node_b.baglanti_sayisi = len(node_b.neighbors)
+        self.nodes[a].neighbors.add(b)
+        self.nodes[b].neighbors.add(a)
+
+        self.nodes[a].baglanti_sayisi = len(self.nodes[a].neighbors)
+        self.nodes[b].baglanti_sayisi = len(self.nodes[b].neighbors)
+
     def remove_undirected_edge(self, node_id_a: int, node_id_b: int) -> None:
         """İki node arasındaki çift yönlü bağlantıyı siler."""
         if node_id_a not in self.nodes or node_id_b not in self.nodes:
