@@ -24,7 +24,8 @@ class MainWindow(QMainWindow):
         main_layout = QHBoxLayout(central)
 
         # SOL kısım = graf canvas
-        self.graph_view.node_clicked.connect(self.on_node_clicked) = GraphView(self.graph)
+        self.graph_view = GraphView(self.graph)
+        self.graph_view.node_clicked.connect(self.on_node_clicked)
         main_layout.addWidget(self.graph_view, stretch=3)
 
         # SAĞ kısım = kontrol paneli
@@ -47,7 +48,6 @@ class MainWindow(QMainWindow):
         layout.addWidget(btn_adj_list)
         btn_adj_matrix = QPushButton("Komşuluk Matrisi (CSV)")
         btn_adj_matrix.clicked.connect(self.export_adj_matrix)
-        layout.addWidget(btn_csv_import)
         layout.addWidget(btn_adj_matrix)
         # Başlangıç node ID input
         layout.addWidget(QLabel("Başlangıç Node ID:"))
