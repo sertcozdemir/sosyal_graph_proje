@@ -1,11 +1,13 @@
 from PyQt5.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
-    QPushButton, QLineEdit, QLabel, QListWidget
+    QPushButton, QLineEdit, QLabel, QListWidget,QFileDialog
 )
 from .graph_view import GraphView
 from core.graph import Graph
 from graph_algorithms.bfs import bfs
 from graph_algorithms.dfs import dfs
+from io.csv_manager import export_nodes_to_csv, import_nodes_from_csv
+from io.adjacency_export import export_adjacency_list, export_adjacency_matrix
 
 
 class MainWindow(QMainWindow):
@@ -34,7 +36,19 @@ class MainWindow(QMainWindow):
     def build_panel(self):
         panel = QWidget()
         layout = QVBoxLayout(panel)
-
+        btn_csv_export =QPushButton("Node CSV Dışa aktar")
+        btn_csv_export.clicked.connect(self.export_nodes_csv)
+        layout.addWidget(btn_csv_export)
+        btn_csv_import=QPushButton("Node CSV İçeri aktar")
+        btn_csv_import.clicked.connect(self.import_nodes_csv)
+        layout.addWidget(btn_csv_import)
+        btn_adj_list=QPushButton("Komşuluk Listesi (CSV)")
+        btn_adj_list.clicked.connect(self.export_adj_list)
+        layout.addWidget(btn_adj_list)
+        btn_adj_matrix = QPushButton("Komşuluk Matrisi (CSV)")
+        btn_adj_matrix.clicked.connect(self.export_adj_matrix)
+        layout.addWidget(btn_csv_import)
+        layout.addWidget(btn_adj_matrix)
         # Başlangıç node ID input
         layout.addWidget(QLabel("Başlangıç Node ID:"))
         self.start_input = QLineEdit()
@@ -237,7 +251,27 @@ class MainWindow(QMainWindow):
         self.graph.remove_undirected_edge(src, dst)
         self.graph_view.draw_graph()
         self.show_result([f"{src} - {dst} arasındaki çift yönlü bağlantı silindi."])
-
+    def export_nodes_csv(self):
+        path, _ = QFileDialog.getSaveFileName(self,"CSV Kaydet", "","CSV(*.csv)")
+        if path:
+            export_nodes_to_csv(self.graph, path)
+            self.show_result([f"Node CSV Kaydedildi: {path}"])
+    def import_nodes_csv(self):
+        path, _=QFileDialog.getOpenFileName(self, "CSV Yükle", "", "CSV (*.csv)")
+        if path:
+            import_nodes_from_csv(self.graph, path)
+            self.graph_view.draw_graph()
+            self.show_result([f"Node CSV Yüklendi: {path}"])
+    def export_adj_list(self):
+        path, _ =QFileDialog.getSaveFileName(self, "Komşuluk Listesi", "", "CSV (*.csv)")
+        if path:
+            export_adjacency_list(self.graph, path)
+            self.show_result([f"Komşuluk Listesi kaydedildi: {path}"])
+    def export_adj_matrix(self):
+        path, _ =QFileDialog.getSaveFileName(self, "Komşuluk Matrisi", "", "CSV(*.csv)")
+        if path:
+            export_adjacency_matrix(self.graph, path)
+            self.show_result([f"Komşuluk matrisi kaydedildi:{path}"])
     
 
 
