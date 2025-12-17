@@ -81,7 +81,7 @@ class Graph:
         Edge yoksa ValueError fırlatır.
         """
         for e in self.edges:
-            if e.source_id == source_id and e.target_id == target_id:
+            if e.a == source_id and e.b == target_id:
                 return e.weight
         raise ValueError(f"{source_id} -> {target_id} arasında edge yok.")
   

@@ -6,4 +6,4 @@ class Edge:
 
 
     def __repr__(self) -> str:
-        return f"Edge({self.source_id} -> {self.target_id}, weight={self.weight:.3f})"
+        return f"Edge({self.a} -> {self.b}, weight={self.weight:.3f})"

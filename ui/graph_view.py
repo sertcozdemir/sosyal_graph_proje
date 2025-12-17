@@ -46,8 +46,8 @@ class GraphView(QGraphicsView):
         # Önce edge'leri çiz
         pen_edge = QPen(Qt.black)
         for edge in self.graph.edges:
-            x1, y1 = positions[edge.source_id]
-            x2, y2 = positions[edge.target_id]
+            x1, y1 = positions[edge.a]
+            x2, y2 = positions[edge.b]
             self.scene.addLine(x1, y1, x2, y2, pen_edge)
 
         # Sonra node'ları çiz
