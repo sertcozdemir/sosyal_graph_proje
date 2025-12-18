@@ -210,7 +210,6 @@ DFS Algoritma çalıştırma
 Performans testi
 <img width="730" height="193" alt="image" src="https://github.com/user-attachments/assets/b384ba84-d940-42e3-9b73-17ac2141a625" />
 
-📸 Buraya ekran görüntüleri eklenecektir.
 
 6. Performans Testleri
 Düğüm Sayısı	Edge Sayısı	BFS (s)	DFS (s)	Dijkstra (s)
