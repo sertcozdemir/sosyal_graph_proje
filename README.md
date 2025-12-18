@@ -194,14 +194,21 @@ classDiagram
     MainWindow --> GraphView
 
 5. Uygulama Ekranları ve Test Senaryoları
+EN ETKİLİ 5 KULLANICI
+<img width="1897" height="1007" alt="image" src="https://github.com/user-attachments/assets/e121fb86-65a8-4e83-a524-f4d7074f2c95" />
 
 Kullanıcı ekleme / silme
 
 Bağlantı ekleme / silme
+<img width="1913" height="1003" alt="image" src="https://github.com/user-attachments/assets/89112671-8234-45f5-b2df-47ec3361e9f5" />
 
 Algoritma çalıştırma
+<img width="1911" height="977" alt="image" src="https://github.com/user-attachments/assets/46aa4e35-27d7-4fdd-b8a4-38d32c36ca90" />
+DFS Algoritma çalıştırma
+<img width="1905" height="1022" alt="image" src="https://github.com/user-attachments/assets/34cca71f-41c2-4588-8237-699b23260edf" />
 
 Performans testi
+<img width="730" height="193" alt="image" src="https://github.com/user-attachments/assets/b384ba84-d940-42e3-9b73-17ac2141a625" />
 
 📸 Buraya ekran görüntüleri eklenecektir.
 
