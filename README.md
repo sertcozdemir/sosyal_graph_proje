@@ -46,21 +46,21 @@ flowchart TD
 
 
 ### DFS (Depth-First Search)
-
+```mermaid
 flowchart TD
     A[Başlangıç Node] --> B[Node'u ziyaret et]
     B --> C[Bir komşuya git]
     C --> D{Ziyaret edilmemiş komşu var mı?}
     D -->|Evet| B
     D -->|Hayır| E[Geri dön]
-
+```
 
 ---
 
 # 🟥 Dijkstra – Mermaid Akış Diyagramı
 
 ### Dijkstra Algoritması
-
+```mermaid
 
 flowchart TD
     A[Başlangıç Node] --> B[Mesafeleri başlat]
@@ -69,14 +69,14 @@ flowchart TD
     D --> E{Güncellenecek node var mı?}
     E -->|Evet| C
     E -->|Hayır| F[Bitiş]
-
+```
 
 ---
 
 # 🟨 A* – Mermaid Akış Diyagramı
 ### A* Algoritması
 
-
+```mermaid
 flowchart TD
     A[Başlangıç Node] --> B[f = g + h hesapla]
     B --> C[En küçük f değerli node'u seç]
@@ -84,7 +84,7 @@ flowchart TD
     D --> E{Hedefe ulaşıldı mı?}
     E -->|Evet| F[Bitiş]
     E -->|Hayır| C
-
+```
 
 
 ---
@@ -93,7 +93,7 @@ flowchart TD
 
 ### Welsh–Powell Graf Renklendirme
 
-
+```mermaid
 flowchart TD
     A[Node'ları dereceye göre sırala]
     A --> B[İlk node'u renklendir]
@@ -101,7 +101,7 @@ flowchart TD
     C -->|Hayır| B
     C -->|Evet| D[Sonraki node'a geç]
     D --> C
-
+```
 
 
 
