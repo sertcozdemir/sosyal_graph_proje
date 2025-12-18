@@ -28,6 +28,7 @@ dolaşır. Önce en yakın komşular, sonra onların komşuları ziyaret edilir.
 Akış Diyagramı:
 
 ### BFS (Breadth-First Search)
+```mermaid
 
 flowchart TD
     A[Başlangıç Node] --> B[Kuyruğa ekle]
@@ -37,6 +38,7 @@ flowchart TD
     E --> F[Komşuları kuyruğa ekle]
     F --> C
     D -->|Evet| C
+```
 
 
 
