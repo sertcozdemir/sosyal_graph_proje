@@ -47,5 +47,5 @@ def run_performance_tests():
             "Dijkstra": times["Dijkstra"]
 
         })
-        return tests
+    return tests
 
