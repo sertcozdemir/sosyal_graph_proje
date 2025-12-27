@@ -142,15 +142,48 @@ class MainWindow(QMainWindow):
 
     # --------- BFS ÇALIŞTIR -----------
     def run_bfs(self):
-        start = int(self.start_input.text())
-        result = bfs(self.graph, start)
-        self.show_result(result["visited_order"])
+        try:
+            start_text = self.start_input.text().strip()
+            if not start_text:
+                raise ValueError
+
+            start = int(start_text)
+
+        except ValueError:
+            self.show_result(["Hata: BFS için geçerli bir başlangıç node ID girin"])
+            return
+
+        if start not in self.graph.nodes:
+            self.show_result([f"Hata: Node bulunamadı: {start}"])
+            return
+
+        from graph_algorithms.bfs import bfs
+        visited = bfs(self.graph, start)
+
+        self.show_result([
+            "BFS Sonucu:",
+            f"Başlangıç Node: {start}",
+            f"Ziyaret Edilenler: {visited}"
+    ])
+
 
     # --------- DFS ÇALIŞTIR -----------
     def run_dfs(self):
-        start = int(self.start_input.text())
-        result = dfs(self.graph, start)
-        self.show_result(result["visited_order"])
+        try:
+            start_text= self.start_input.text().strip()
+            if not start_text:
+                raise ValueError
+            start= int(start_text)
+        except ValueError:
+            self.show_result(["Hata: DFS icin gecerli bir baslangic Node id girin"])
+            return
+        from graph_algorithms.dfs import dfs
+        visited=dfs(self.graph,start)
+        self.show_result([
+            "DFS Sonucu",
+            f"Baslangic Node: {start}",
+            f"Ziyaret Edilenler {visited}"
+        ])
 
     # --------- SONUÇ GÖSTERME -----------
     def show_result(self, visited_order):
@@ -344,9 +377,9 @@ class MainWindow(QMainWindow):
             table.setItem(row,0,QTableWidgetItem(str(r["nodes"])))
             table.setItem(row,1,QTableWidgetItem(str(r["edges"])))
             table.setItem(row,2,QTableWidgetItem(f"{r['BFS']:.6f}"))
-            table.setItem(row,2,QTableWidgetItem(f"{r['DFS']:.6f}"))
-            table.setItem(row,2,QTableWidgetItem(f"{r['Dijkstra']:.6f}"))
-        table.resizeColumnToContents()
+            table.setItem(row,3,QTableWidgetItem(f"{r['DFS']:.6f}"))
+            table.setItem(row,4,QTableWidgetItem(f"{r['Dijkstra']:.6f}"))
+        table.resizeColumnsToContents()
         self.result_list.clear()
         self.result_list.addItem("Performans Test Sonuçları")
         self.result_list.addItem("")
