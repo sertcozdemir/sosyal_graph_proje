@@ -97,7 +97,7 @@ flowchart TD
 flowchart TD
     A[Node'ları dereceye göre sırala]
     A --> B[ node'u renklendir]
-    B --> C{Komşu aynı renkte mi?}
+    B --> C{Komşusu  mu?}
     C -->|Hayır| B
     C -->|Evet| D[Sonraki node'a geç]
     D --> C
