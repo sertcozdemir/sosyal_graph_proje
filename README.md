@@ -96,7 +96,7 @@ flowchart TD
 ```mermaid
 flowchart TD
     A[Node'ları dereceye göre sırala]
-    A --> B[İlk node'u renklendir]
+    A --> B[ node'u renklendir]
     B --> C{Komşu aynı renkte mi?}
     C -->|Hayır| B
     C -->|Evet| D[Sonraki node'a geç]
